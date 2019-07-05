@@ -3,7 +3,7 @@
 ### Install 
 1. `pip install -r requirements.txt`
 2. `. env/bin/activate`
-3. `cd github_pillar/pillar `
+3. `cd pillar_gh/pillar `
 4. `python manage.py runserver`
 
 ### Setup
