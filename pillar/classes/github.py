@@ -4,6 +4,7 @@ import requests
 
 class Github:
     def __init__(self):
+        print('Github class initialized')
         self.config = self.get_config()['github']
 
     def get_config(self, path=None):
@@ -40,7 +41,6 @@ class Github:
         org = org if org else 'no org in get_repos'
         repos_url = org['repos_url']
         repos = self.make_request(repos_url)
-        print('here') 
         repo_data = {}
         if repos:
             for repo in repos:
@@ -49,16 +49,11 @@ class Github:
 
     def get_repo_data(self, repo):
         repo_config = self.config['orgs']['repos']
-        print('REPO!', repo)
         desired_data = repo_config['endpoints'].keys()        
+        repo_data = {}
         for data in desired_data:
-            datapoints = data + '_count'            
-            print(datapoints)
-            print(repo[datapoint])
+            datapoint = data + '_count'            
+            repo_id = repo['id']
+            repo_data[repo_id][datapoint] = repo[datapoint]
 
-
-G = Github()
-data = G.get_organization_data('netflix')
-print(data)
-
-
+        return repo_data 
