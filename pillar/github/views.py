@@ -8,4 +8,4 @@ def index(request):
 def name(request, name):
 	github = classes.github.Github()
 	orgs = github.get_organization_data(name)
-	return orgs
+	return HttpResponse(orgs)

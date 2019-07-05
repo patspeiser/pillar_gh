@@ -18,10 +18,19 @@ class Github:
     	return config
 
     def make_request(self, url=None):
+        #w/ req url check for token then make request
         if url:
             header = {}
-            header['Authorization'] = self.config['auth']['token']
-            response = requests.get(url, header)
+            token = os.environ['GH_TOKEN'] if 'GH_TOKEN' in os.environ else self.config['auth']['token']
+
+            #get token for req
+            if token:
+                header['Authorization'] = token
+                response = requests.get(url, header)
+            else: 
+                return
+
+            #handle res
             if response.status_code == 200:
                 return response.json()
             else: 
@@ -33,12 +42,11 @@ class Github:
         org_data = {}
         org = organization if organization else 'no organization supplied'
         req_url = os.path.join(self.config['base_url'], self.config['orgs']['path'], org)
-        print(req_url) 
         org = self.make_request(req_url)
-        self.get_repos(org) 
+        return self.get_repos(org) 
 
     def get_repos(self, org):
-        org = org if org else 'no org in get_repos'
+        print('org', org)
         repos_url = org['repos_url']
         repos = self.make_request(repos_url)
         repo_data = {}
