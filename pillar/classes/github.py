@@ -46,14 +46,12 @@ class Github:
         return self.get_repos(org) 
 
     def get_repos(self, org):
-        print('org', org)
         repos_url = org['repos_url']
         repos = self.make_request(repos_url)
         repo_data = {}
         if repos:
             for repo in repos:
                 repo['name'] = self.get_repo_data(repo)
-                print(repo)
 
     def get_repo_data(self, repo):
         repo_config = self.config['orgs']['repos']
