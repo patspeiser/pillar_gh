@@ -7,7 +7,9 @@
 
 ### Setup
 1. Add your github token to config.yml auth token field
-`or `
+
+or 
+
 1. Set an environment variable GH_TOKEN 
 
 ### In browser
