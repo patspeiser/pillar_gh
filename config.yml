@@ -1,0 +1,14 @@
+github:
+    version: 3
+    base_url: 'https://api.github.com'
+    auth:
+        token: ''
+    orgs: 
+        path: 'orgs/'
+        repos: 
+            path: 'repos/'
+            endpoints: 
+                stargazers: 
+                    path: 'stars/'
+                forks: 
+                    path: 'forks/'
